@@ -10,14 +10,9 @@
     "experimentalDecorators": true,
     "target": "es6",
     "sourceMap": true,
-    "outDir": "./dist",
-    "baseUrl": "./src"
+    "outDir": "./dist/server",
+    "baseUrl": "./src/server"
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts"
-  ]
+  "include": ["src/server/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }
