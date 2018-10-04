@@ -1,7 +1,7 @@
 {
-  "name": "trees-cache-server",
+  "name": "dev-api-butler",
   "version": "0.0.1",
-  "description": "cache server for dev purposes with Trees API",
+  "description": "Development proxy server for caching API requests to speed up dev",
   "author": "Juri Strumpflohner",
   "license": "MIT",
   "scripts": {
@@ -23,6 +23,7 @@
     "@nestjs/common": "^5.1.0",
     "@nestjs/core": "^5.1.0",
     "reflect-metadata": "^0.1.12",
+    "request": "^2.88.0",
     "rxjs": "^6.2.2",
     "typescript": "^3.0.1"
   },
