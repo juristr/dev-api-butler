@@ -26,12 +26,8 @@
     "webpack": "webpack --config webpack.config.js"
   },
   "dependencies": {
-    "@nestjs/common": "^5.1.0",
-    "@nestjs/core": "^5.1.0",
-    "reflect-metadata": "^0.1.12",
-    "request": "^2.88.0",
-    "typescript": "^3.0.1",
-    "@angular/animations": "~7.0.0-rc.0",
+    "@angular/animations": "^7.0.0-rc.0",
+    "@angular/cdk": "^6.4.7",
     "@angular/common": "~7.0.0-rc.0",
     "@angular/compiler": "~7.0.0-rc.0",
     "@angular/core": "~7.0.0-rc.0",
@@ -40,8 +36,14 @@
     "@angular/platform-browser": "~7.0.0-rc.0",
     "@angular/platform-browser-dynamic": "~7.0.0-rc.0",
     "@angular/router": "~7.0.0-rc.0",
+    "@nebular/theme": "^2.0.1",
+    "@nestjs/common": "^5.1.0",
+    "@nestjs/core": "^5.1.0",
     "core-js": "^2.5.4",
+    "reflect-metadata": "^0.1.12",
+    "request": "^2.88.0",
     "rxjs": "~6.3.3",
+    "typescript": "^3.0.1",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
