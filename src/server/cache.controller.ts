@@ -10,7 +10,7 @@ export class CacheController {
     // should be POST, but easier to call in browser
     // like this
     this.cacheService.clearCache();
-    return 'done, my master';
+    return { msg: 'done, my master' };
   }
 
   @Get('entries')

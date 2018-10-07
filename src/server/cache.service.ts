@@ -1,6 +1,6 @@
 import { Injectable, HttpService, HttpException } from '@nestjs/common';
 import { tap, map, catchError } from 'rxjs/operators';
-import { of, throwError } from 'rxjs';
+import { of, throwError, Subject } from 'rxjs';
 
 // TODO: fetch from config file
 // ideally JSON which can be changed at runtime and reloaded without server restart => loosing caches
@@ -20,6 +20,10 @@ const urlCachePatterns = [
 
 @Injectable()
 export class CacheService {
+  private subject = new Subject();
+
+  $events = this.subject.asObservable();
+
   private cachedResponses = {};
 
   constructor(private httpService: HttpService) {}
@@ -30,6 +34,10 @@ export class CacheService {
     const cachedResponse = this.cachedResponses[key];
     if (req.method === 'GET' && cachedResponse) {
       console.log(`returning ${req.url} from cache`);
+      this.subject.next({
+        type: 'log',
+        payload: `returning ${req.url} from cache`,
+      });
       return of(cachedResponse);
     } else {
       return this.httpService
@@ -46,6 +54,12 @@ export class CacheService {
               if (this.shouldCache(req.url)) {
                 console.log(`Caching ${req.url}`);
                 this.cachedResponses[key] = x;
+                this.subject.next({
+                  type: 'cached-entry',
+                  payload: {
+                    url: req.url,
+                  },
+                });
               }
             } else {
               // POST/PUT/DELETE request on this key should trigger
@@ -54,9 +68,14 @@ export class CacheService {
             }
           }),
           catchError(err => {
-            return throwError(
-              new HttpException(err.response.data, err.response.status),
-            );
+            if (err.response) {
+              return throwError(
+                new HttpException(err.response.data, err.response.status),
+              );
+            } else {
+              console.error(err);
+              return throwError(new HttpException(null, 0));
+            }
           }),
         );
     }

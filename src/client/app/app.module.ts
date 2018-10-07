@@ -7,14 +7,18 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from './shared';
 import { PluginsModule } from './plugins';
+import { CoreModule } from './core/core.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     RouterModule.forRoot([]),
     NbThemeModule.forRoot({ name: 'default' }),
+    CoreModule,
     SharedModule,
     PluginsModule,
   ],

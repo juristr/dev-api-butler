@@ -2,5 +2,16 @@
   <nb-layout-header fixed>Dev API Butler</nb-layout-header>
   <nb-layout-column>
     <button nbButton (click)="clearCache()">Clear cache</button>
+
+    <nb-card size="medium">
+      <nb-card-header>
+        Cached entries
+      </nb-card-header>
+      <nb-list>
+        <nb-list-item *ngFor="let cacheEntry of cachedEntries">
+          {{ cacheEntry.payload.url }}
+        </nb-list-item>
+      </nb-list>
+    </nb-card>
   </nb-layout-column>
 </nb-layout>
