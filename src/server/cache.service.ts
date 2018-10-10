@@ -82,7 +82,13 @@ export class CacheService {
   }
 
   cachedEntries() {
-    return Object.keys(this.cachedResponses);
+    return Object.keys(this.cachedResponses).map(x => ({ url: x }));
+  }
+
+  removeCachedEntry(key: string): any {
+    this.cachedResponses[key] = null;
+    delete this.cachedResponses[key];
+    return { msg: 'Done' };
   }
 
   clearCache() {

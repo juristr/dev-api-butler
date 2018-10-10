@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import * as socketIo from 'socket.io-client';
 import { Subject, Observable } from 'rxjs';
 
@@ -11,6 +11,16 @@ export class BackendService {
   private socket;
 
   constructor(private http: HttpClient) {}
+
+  getCachedEntries() {
+    return this.http.get<any[]>('/api/cache/entries');
+  }
+
+  removeCacheEntry(entry: { url: string }): any {
+    return this.http.delete(`/api/cache/entry`, {
+      params: new HttpParams().set('key', entry.url),
+    });
+  }
 
   clearCache() {
     return this.http.get('/api/cache/clear');

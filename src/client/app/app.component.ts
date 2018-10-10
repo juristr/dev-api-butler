@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BackendService } from './core/backend.service';
-import { filter } from 'rxjs/operators';
+import { filter, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -13,10 +13,28 @@ export class AppComponent {
   constructor(private backend: BackendService) {
     this.backend
       .connect()
-      .pipe(filter(x => x.type === 'cached-entry'))
+      .pipe(
+        filter(x => x.type === 'cached-entry'),
+        switchMap(() => this.backend.getCachedEntries()),
+      )
       .subscribe(x => {
-        this.cachedEntries.push(x);
+        this.cachedEntries = x;
       });
+  }
+
+  removeEntry(entry) {
+    this.backend
+      .removeCacheEntry(entry)
+      .pipe(switchMap(() => this.backend.getCachedEntries()))
+      .subscribe(x => {
+        this.cachedEntries = x;
+      });
+  }
+
+  refreshCachedEntries() {
+    this.backend.getCachedEntries().subscribe(x => {
+      this.cachedEntries = x;
+    });
   }
 
   clearCache() {
