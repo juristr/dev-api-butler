@@ -64,7 +64,14 @@ export class CacheService {
             } else {
               // POST/PUT/DELETE request on this key should trigger
               // reset of that cache. Naive approach ofc
+              console.log(`x=> Clear cache for ${key}`);
               this.cachedResponses[key] = null;
+              this.subject.next({
+                type: 'cached-entry',
+                payload: {
+                  url: req.url,
+                },
+              });
             }
           }),
           catchError(err => {
