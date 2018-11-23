@@ -29,7 +29,7 @@ export class BackendService {
   connect(): Observable<any> {
     // If you aren't familiar with environment variables then
     // you can hard code `environment.ws_url` as `http://localhost:5000`
-    this.socket = socketIo('http://localhost:3000');
+    this.socket = socketIo('http://localhost:3100');
 
     // We define our observable which will observe any incoming messages
     // from our socket.io server.
