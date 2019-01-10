@@ -8,9 +8,9 @@
       "type": "node",
       "request": "launch",
       "name": "Launch in debug",
-      "cwd": "${workspaceFolder}",
+      "cwd": "${workspaceRoot}",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run-script", "start:debug"],
+      "runtimeArgs": ["run-script", "start:server:debug"],
       "port": 9229
     }
   ]
