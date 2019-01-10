@@ -23,12 +23,18 @@ $ npm install
 Then run the server with
 
 ```
-$ npm start
+$ npm run start:server
 ```
 
 Then create a [proxy configuration](https://webpack.js.org/configuration/dev-server/) for your webpack dev server. If you wanna see how to do it with the Angular CLI [check out my blog post here](https://juristr.com/blog/2016/11/configure-proxy-api-angular-cli/).
 
 > **WARNING:** Right now the URLs which should be cached as well as the API url where to forward the requests is hard-coded [here](https://github.com/juristr/dev-api-butler/blob/master/src/cache.service.ts). Check out the Todos.
+
+If you also want to **start the UI client** to see which URLs are cached or to clear the case, run
+
+```
+$ npm start
+```
 
 ## Wanna contribute? Here are my current Todos.
 
