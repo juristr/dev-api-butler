@@ -4,6 +4,7 @@
 /dist
 /tmp
 /out-tsc
+src/server/fixtures
 
 # dependencies
 /node_modules

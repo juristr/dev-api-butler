@@ -17,12 +17,12 @@ export class EventsGateway implements OnGatewayInit {
 
   afterInit(server: any) {
     this.cacheService.$events
-      .pipe(
-        tap(x => console.log('got new event, emitting to client')),
-        // map(item => ({ event: 'events', data: item })),
-      )
+      .pipe
+      // tap(x => console.log('got new event, emitting to client')),
+      // map(item => ({ event: 'events', data: item })),
+      ()
       .subscribe(x => {
-        console.log('submitting event via WS', x);
+        // console.log('submitting event via WS', x);
         server.emit('events', x);
       });
   }
